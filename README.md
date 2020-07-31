@@ -1,4 +1,4 @@
-# Krishnaji_searching_app
+# Imahe_searching_app_krish
 This app is used for search image
 ## Instructions
 
