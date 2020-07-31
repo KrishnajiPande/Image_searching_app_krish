@@ -20,10 +20,8 @@ import com.example.krishnaji_searching_app.data.remote.models.ApiResponse
 import com.example.krishnaji_searching_app.data.remote.models.DataModel
 import com.example.krishnaji_searching_app.data.remote.models.ImageListModel
 import com.example.krishnaji_searching_app.di.component.DaggerActivitiesComponent
-
 import com.example.krishnaji_searching_app.di.module.ActivitiesModule
 import com.example.krishnaji_searching_app.di.module.SharedPrefHelperModule
-import com.example.krishnaji_searching_app.di.module.SharedPreferModule
 import com.example.krishnaji_searching_app.utils.AppConstants
 import com.example.krishnaji_searching_app.utils.Messages
 import com.example.krishnaji_searching_app.utils.Utils
@@ -37,8 +35,12 @@ import javax.inject.Inject
 
 class SearchActivity : BaseActivity(), SearchActivityContract.ViewCallback, View.OnClickListener,
     SearchResultAdapter.onListItemSelection {
+    //shared preference helper
     @Inject
     lateinit var mPreferenceHelper: PreferenceHelper
+
+
+    //presenterCallback for call
     @Inject
     lateinit var mPresenterCallback: SearchActivityContract.PresenterCallback
 
@@ -56,7 +58,7 @@ class SearchActivity : BaseActivity(), SearchActivityContract.ViewCallback, View
         init()
 
     }
-
+// data save at when activity state changes
 /*
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
@@ -70,8 +72,8 @@ class SearchActivity : BaseActivity(), SearchActivityContract.ViewCallback, View
 
     }
 */
-
-    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+// Restore data after state restore
+/*    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
         super.onRestoreInstanceState(savedInstanceState)
         try {
             savedInstanceState.let {
@@ -83,7 +85,7 @@ class SearchActivity : BaseActivity(), SearchActivityContract.ViewCallback, View
             e.printStackTrace()
         }
 
-    }
+    }*/
 
     private fun init() {
         supportActionBar!!.title = resources.getString(R.string.search_title)
@@ -122,6 +124,7 @@ class SearchActivity : BaseActivity(), SearchActivityContract.ViewCallback, View
         )
     }
 
+    //response parser
     override fun handledResponse(response: java.util.ArrayList<DataModel>) {
         dismissProgressBar()
         imageList.clear()
@@ -138,6 +141,8 @@ class SearchActivity : BaseActivity(), SearchActivityContract.ViewCallback, View
         setRecyclerAdapter(imageList)
     }
 
+
+    // data binding to recyclerview
     override fun setRecyclerAdapter(imageList: MutableList<ImageListModel>) {
         recyclerView.adapter = SearchResultAdapter(this, imageList, this)
     }
@@ -150,10 +155,12 @@ class SearchActivity : BaseActivity(), SearchActivityContract.ViewCallback, View
         )
     }
 
+    // onSuccess Response
     override fun successApiResponse(apiResponse: ApiResponse?) {
         response = apiResponse!!
     }
 
+    // recycler layout manager setup
     private fun setUpRecyclerView() {
         recyclerView.layoutManager = LinearLayoutManager(
             this,
@@ -165,6 +172,7 @@ class SearchActivity : BaseActivity(), SearchActivityContract.ViewCallback, View
         recyclerView.itemAnimator = DefaultItemAnimator()
     }
 
+    //dependency injection
     override fun inject() {
         DaggerActivitiesComponent.builder()
             .activitiesModule(ActivitiesModule(this, this))
@@ -193,7 +201,7 @@ class SearchActivity : BaseActivity(), SearchActivityContract.ViewCallback, View
         }
     }
 
-    private fun View.hideKeyboard() {
+    override fun View.hideKeyboard() {
         val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         imm.hideSoftInputFromWindow(windowToken, 0)
     }
@@ -216,7 +224,7 @@ class SearchActivity : BaseActivity(), SearchActivityContract.ViewCallback, View
         alertBar()
     }
 
-    private fun alertBar() {
+    override fun alertBar() {
         val rootView: View =
             window.decorView.findViewById(android.R.id.content)
 
@@ -226,12 +234,9 @@ class SearchActivity : BaseActivity(), SearchActivityContract.ViewCallback, View
             Snackbar.LENGTH_INDEFINITE
         )
         snack.setAction(resources.getString(R.string.logout)) {
-            exitApp()
+            finish()
         }
         snack.show()
     }
 
-    private fun exitApp() {
-        finish()
-    }
 }

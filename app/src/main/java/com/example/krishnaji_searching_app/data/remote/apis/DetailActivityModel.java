@@ -14,4 +14,13 @@ public class DetailActivityModel implements DetailsActivityContract.ModelCallbac
         this.context = context;
         this.presenterCallback = presenterCallback;
     }
+
+    @Override
+    public void validateComment(String strComment) {
+        if (strComment.isEmpty()) {
+            presenterCallback.errorComment();
+            return;
+        }
+
+    }
 }

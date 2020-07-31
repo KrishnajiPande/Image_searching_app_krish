@@ -22,4 +22,13 @@ public class DetailsActivityPresenter implements DetailsActivityContract.Present
     private DetailsActivityContract.ViewCallback mViewCallback = (DetailsActivityContract.ViewCallback) baseViewCallback;
     private DetailsActivityContract.ModelCallback mModelCallback = new DetailActivityModel(context, this);
 
+    @Override
+    public void validateComment(String strComment) {
+        validateComment(strComment);
+    }
+
+    @Override
+    public void errorComment() {
+        mViewCallback.errorComment();
+    }
 }

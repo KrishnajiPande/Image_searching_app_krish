@@ -1,11 +1,11 @@
 package com.example.krishnaji_searching_app.contract
 
-import android.widget.EditText
+import android.view.View
 import com.example.krishnaji_searching_app.data.remote.models.ApiResponse
 import com.example.krishnaji_searching_app.data.remote.models.DataModel
 import com.example.krishnaji_searching_app.data.remote.models.ImageListModel
 import com.example.krishnaji_searching_app.view.base.BaseViewCallback
-import java.util.ArrayList
+import java.util.*
 
 //Created by krishnaji
 
@@ -20,6 +20,8 @@ interface SearchActivityContract {
         fun setRecyclerAdapter(imageList: MutableList<ImageListModel>)
         fun networkError()
         fun successApiResponse(apiResponse: ApiResponse?)
+        fun View.hideKeyboard()
+       fun alertBar()
     }
 
     interface PresenterCallback {

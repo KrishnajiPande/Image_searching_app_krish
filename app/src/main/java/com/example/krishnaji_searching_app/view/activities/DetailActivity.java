@@ -17,7 +17,9 @@ import com.example.krishnaji_searching_app.di.component.DaggerActivitiesComponen
 import com.example.krishnaji_searching_app.di.module.ActivitiesModule;
 import com.example.krishnaji_searching_app.di.module.SharedPrefHelperModule;
 import com.example.krishnaji_searching_app.utils.AppConstants;
+import com.example.krishnaji_searching_app.utils.Messages;
 import com.example.krishnaji_searching_app.view.base.BaseActivity;
+import com.google.android.material.snackbar.Snackbar;
 
 import javax.inject.Inject;
 
@@ -45,6 +47,7 @@ public class DetailActivity extends BaseActivity implements DetailsActivityContr
 
     }
 
+    // get extra from bundle
     private void getExtras() {
         Bundle bundle = getIntent().getExtras();
         if (bundle == null) {
@@ -99,17 +102,23 @@ public class DetailActivity extends BaseActivity implements DetailsActivityContr
                 .build();
     }
 
-    private void showErrorSnack() {
-
+    private void showErrorSnack(String msg) {
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.constraints), msg, Snackbar.LENGTH_INDEFINITE);
+        snackbar.show();
     }
 
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_submit:
-               // preferenceHelper.setPreferences(imageListModel.getId(), editText.getText().toString());
+                // mPresenterCallback.validateComment(editText.getText().toString().trim());
                 break;
 
         }
+    }
+
+    @Override
+    public void errorComment() {
+        showErrorSnack(Messages.EmptyFieldErrorMsg);
     }
 }
