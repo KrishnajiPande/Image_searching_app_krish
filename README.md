@@ -1,4 +1,4 @@
-# Imahe_searching_app_krish
+# Image_searching_app_krish
 This app is used for search image
 ## Instructions
 
