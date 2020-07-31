@@ -1,11 +1,14 @@
 package com.example.krishnaji_searching_app.view.activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -16,6 +19,7 @@ import com.example.krishnaji_searching_app.data.remote.models.ImageListModel;
 import com.example.krishnaji_searching_app.di.component.DaggerActivitiesComponent;
 import com.example.krishnaji_searching_app.di.module.ActivitiesModule;
 import com.example.krishnaji_searching_app.di.module.SharedPrefHelperModule;
+import com.example.krishnaji_searching_app.presenter.DetailsActivityPresenter;
 import com.example.krishnaji_searching_app.utils.AppConstants;
 import com.example.krishnaji_searching_app.utils.Messages;
 import com.example.krishnaji_searching_app.view.base.BaseActivity;
@@ -68,11 +72,18 @@ public class DetailActivity extends BaseActivity implements DetailsActivityContr
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         setTooBarTitle(getResources().getString(R.string.noImageName));
+        mPresenterCallback = new DetailsActivityPresenter(this, this);
+        preferenceHelper = new PreferenceHelper(this);
         ImageView imageView = findViewById(R.id.image_ico);
         editText = findViewById(R.id.edit_comment);
         checkData();
         findViewById(R.id.btn_submit).setOnClickListener(this);
-        Glide.with(this).load(imageListModel.getLink()).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
+        try {
+            Glide.with(this).load(imageListModel.getLink()).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void checkData() {
@@ -102,8 +113,14 @@ public class DetailActivity extends BaseActivity implements DetailsActivityContr
                 .build();
     }
 
-    private void showErrorSnack(String msg) {
-        Snackbar snackbar = Snackbar.make(findViewById(R.id.constraints), msg, Snackbar.LENGTH_INDEFINITE);
+    private void showSnackBar(String msg, Integer color) {
+        Snackbar snackbar = Snackbar.make(findViewById(R.id.constraints), msg, Snackbar.LENGTH_LONG);
+        snackbar.getView().setBackgroundColor(
+                ContextCompat.getColor(
+                        this,
+                        color
+                )
+        );
         snackbar.show();
     }
 
@@ -111,14 +128,31 @@ public class DetailActivity extends BaseActivity implements DetailsActivityContr
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_submit:
-                // mPresenterCallback.validateComment(editText.getText().toString().trim());
+             validateComment(editText.getText().toString());
                 break;
 
         }
     }
 
+    private void finishForActivity() {
+        Intent returnIntent = getIntent();
+        setResult(Activity.RESULT_OK, returnIntent);
+        finish();
+    }
+
+
     @Override
-    public void errorComment() {
-        showErrorSnack(Messages.EmptyFieldErrorMsg);
+    public void errorTextField() {
+        showSnackBar(Messages.EmptyFieldErrorMsg, R.color.light_red);
+    }
+
+    @Override
+    public void validateComment(String toString) {
+        if (toString.isEmpty()) {
+            showSnackBar(Messages.EmptyFieldErrorMsg, R.color.light_red);
+        } else {
+            preferenceHelper.setPreferences(imageListModel.getId(), editText.getText().toString().trim());
+            finishForActivity();
+        }
     }
 }

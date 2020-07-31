@@ -1,6 +1,7 @@
 package com.example.krishnaji_searching_app.data.remote.apis;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.krishnaji_searching_app.contract.DetailsActivityContract;
 
@@ -15,12 +16,13 @@ public class DetailActivityModel implements DetailsActivityContract.ModelCallbac
         this.presenterCallback = presenterCallback;
     }
 
-    @Override
-    public void validateComment(String strComment) {
-        if (strComment.isEmpty()) {
-            presenterCallback.errorComment();
-            return;
-        }
 
+    @Override
+    public void validateComment(String toString) {
+       if (toString.isEmpty()){
+           presenterCallback.errorTextField();
+       }else {
+
+       }
     }
 }

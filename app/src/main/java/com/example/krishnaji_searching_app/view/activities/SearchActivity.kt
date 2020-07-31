@@ -1,5 +1,6 @@
 package com.example.krishnaji_searching_app.view.activities
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -217,7 +218,7 @@ class SearchActivity : BaseActivity(), SearchActivityContract.ViewCallback, View
         val bundle = Bundle()
         bundle.putParcelable(AppConstants.bundleImageKey, imageListModel)
         intent.putExtras(bundle)
-        startActivity(intent)
+        startActivityForResult(intent, AppConstants.DETAIL_REQUEST_CODE)
     }
 
     override fun onBackPressed() {
@@ -239,4 +240,13 @@ class SearchActivity : BaseActivity(), SearchActivityContract.ViewCallback, View
         snack.show()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+
+        if (resultCode == Activity.RESULT_OK) {
+            if (resultCode == AppConstants.DETAIL_REQUEST_CODE) {
+                Utils.showSnackBar(findViewById(R.id.constraints), Messages.CommentSucces, this)
+            }
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
 }

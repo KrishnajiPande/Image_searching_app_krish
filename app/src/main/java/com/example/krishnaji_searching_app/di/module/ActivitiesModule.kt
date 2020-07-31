@@ -30,12 +30,4 @@ class ActivitiesModule(
     ): SearchActivityContract.PresenterCallback {
         return SearchActivityPresenter(context, baseViewCallback)
     }
-
-    @Provides
-    fun provideDetailsActivityPresenterImpl(
-        context: Context,
-        baseViewCallback: BaseViewCallback
-    ): DetailsActivityContract.PresenterCallback {
-        return DetailsActivityPresenter(context, baseViewCallback)
-    }
 }

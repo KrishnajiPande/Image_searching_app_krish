@@ -23,12 +23,12 @@ public class DetailsActivityPresenter implements DetailsActivityContract.Present
     private DetailsActivityContract.ModelCallback mModelCallback = new DetailActivityModel(context, this);
 
     @Override
-    public void validateComment(String strComment) {
-        validateComment(strComment);
+    public void validateComment(String toString) {
+        mModelCallback.validateComment(toString);
     }
 
     @Override
-    public void errorComment() {
-        mViewCallback.errorComment();
+    public void errorTextField() {
+        mViewCallback.errorTextField();
     }
 }

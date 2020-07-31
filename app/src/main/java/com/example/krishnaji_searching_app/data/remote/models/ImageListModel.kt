@@ -20,9 +20,10 @@ data class ImageListModel(
     override fun describeContents() = 0
 
     override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
-        writeString(id)
-        writeString(type)
-        writeString(link)
+        writeString(if (id.isNullOrEmpty()) " " else id)
+        writeString(if (type.isNullOrEmpty()) " " else type)
+
+        writeString(if (link.isNullOrEmpty()) " " else link)
     }
 
     companion object {

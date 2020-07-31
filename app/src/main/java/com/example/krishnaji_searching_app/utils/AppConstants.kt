@@ -11,5 +11,7 @@ class AppConstants {
         const val responseNull: String = "null"
         const val bundleImageKey: String = "imagedata"
 
+        const val DETAIL_REQUEST_CODE: Int = 100
+
     }
 }

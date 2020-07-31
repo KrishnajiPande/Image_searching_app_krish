@@ -8,4 +8,5 @@
     <color name="status_bar">#F9F9F9</color>
     <color name="dark_grey">#BFC3C3C3</color>
     <color name="light_red">#FF0000</color>
+    <color name="light_green">#9CFF2B</color>
 </resources>

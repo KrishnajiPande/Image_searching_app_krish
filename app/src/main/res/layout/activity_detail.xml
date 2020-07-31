@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-   android:id="@+id/constraints"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/constraints"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/white">
@@ -39,7 +39,7 @@
         android:hint="@string/enter_your_comment_here"
         android:maxLength="5000"
         android:padding="@dimen/m_8"
-        android:textSize="@dimen/d_normal_text"
+        android:textSize="@dimen/headline"
         app:layout_constraintBottom_toTopOf="@+id/btn_submit"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@id/guideline_end"

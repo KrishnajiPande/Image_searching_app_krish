@@ -9,10 +9,9 @@ import retrofit2.http.Query
 //Created by krishnaji
 
 interface APIInterface {
-    @Headers("Authorization:Client-ID 137cda6b5008a7c")
+    @Headers(ApiConstants.clientSecret)
     @GET(ApiConstants.SEARCH)
     fun searchApi(
-        //  @Header("Authorization") string: String,
         @Query("q") strEditText: String
     ): Call<ApiResponse>
 }

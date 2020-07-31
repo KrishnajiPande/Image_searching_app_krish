@@ -7,17 +7,18 @@ import com.example.krishnaji_searching_app.view.base.BaseViewCallback;
 public interface DetailsActivityContract {
 
     interface ViewCallback extends BaseViewCallback {
-        void errorComment();
+        void errorTextField();
+       void validateComment(String toString);
     }
 
     interface PresenterCallback {
 
-        void validateComment(String strComment);
+        void validateComment(String toString);
 
-        void errorComment();
+        void errorTextField();
     }
 
     interface ModelCallback {
-        void validateComment(String strComment);
+        void validateComment(String toString);
     }
 }

@@ -13,6 +13,4 @@ import javax.inject.Singleton
 @Component(modules = [SharedPrefHelperModule::class, ActivitiesModule::class])
 interface ActivitiesComponent {
     fun inject(searchActivity: SearchActivity)
-    fun inject(detailActivity: DetailActivity)
-
 }
