@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="m_4">4dp</dimen>
+    <dimen name="m_8">8dp</dimen>
+    <dimen name="m_12">12dp</dimen>
+    <dimen name="d_normal_text">15sp</dimen>
+    <dimen name="image_width">250dp</dimen>
+    <dimen name="image_height">150dp</dimen>
+    <dimen name="view_width">80dp</dimen>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+</resources>

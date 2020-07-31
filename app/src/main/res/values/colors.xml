@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#F9F9F9</color>
+    <color name="colorPrimaryDark">#FFCACACA</color>
+    <color name="colorAccent">#BFC3C3C3</color>
+
+<!--    Custom Colors-->
+    <color name="status_bar">#F9F9F9</color>
+    <color name="dark_grey">#BFC3C3C3</color>
+    <color name="light_red">#FF0000</color>
+</resources>
