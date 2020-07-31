@@ -13,10 +13,10 @@ This app is used for search image
 
 ## Discussion
 
-Technologies Used: Java, Kotlin, XML, Firebase/SQLite(local DB),REST API, JSON
+Technologies,Tools, Languages Used: Java, Kotlin, XML, Dagger2 for Dependancy injection, ContraintLayout, Glide fro showing image, Shared Preference(local DB),
+retrofit for REST API, JSON/GSON
 IDE used: Android Studio(Version:)
-Architecture Implemented: MVP/MVVM
-(Give a little description as to why you chose the architecture for this particular problem statement.)
+Architecture Implemented: MVP with Dagger2 dependancy injection.
 
 ## Build variants
 Use the Android Studio *Build Variants* button to choose between **production** and **staging** flavors combined with debug and release build types
