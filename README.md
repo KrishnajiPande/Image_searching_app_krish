@@ -13,8 +13,8 @@ This app is used for search image
 
 ## Discussion
 
-Technologies,Tools, Languages Used: Java, Kotlin, XML, Dagger2 for Dependancy injection, ContraintLayout, Glide fro showing image, Shared Preference(local DB),
-retrofit for REST API, JSON/GSON
+Technologies,Tools, Languages Used: Java, Kotlin, XML, Dagger2 for Dependancy injection, ContraintLayout, Glide for showing image, Shared Preference(local storage),
+retrofit for REST API, JSON/GSON.
 IDE used: Android Studio(Version:)
 Architecture Implemented: MVP with Dagger2 dependancy injection.
 
